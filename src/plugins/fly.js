@@ -3,9 +3,9 @@ import Plugin from "./plugin"
 let defaultOptions = {}
 export default class Fly extends Plugin {
     constructor(options) {
-        super()
+        super(options)
 
-        this.name = "Fly"
+        this.name = "fly"
         this.options = { ...options, ...defaultOptions }
     }
 

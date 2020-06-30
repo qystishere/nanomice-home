@@ -16,6 +16,6 @@ export default {
             presets: ["@babel/preset-env"],
             plugins: ["@babel/plugin-transform-classes"]
         }),
-        terser()
+        //terser()
     ]
 };

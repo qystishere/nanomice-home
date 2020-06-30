@@ -1,8 +1,14 @@
-import EN from "../translations/en"
-import RU from "../translations/ru"
+import EN from "./translations/en"
+import RU from "./translations/ru"
 
 export default {
-    get: function (key, isMessage = false) {
+    type: {
+        none: 0,
+        all: 1,
+        self: 2
+    },
+
+    get: function (key, type = 0) {
         let locale
         switch (nm.Room.CommunityName) {
             case "RU":
@@ -13,9 +19,21 @@ export default {
                 break
         }
 
-        if (isMessage)
-            return `<font color="#AAAAA">Ξ [${locale["home"]}] ${locale[key]}</font>`
+        let value
+        for (let part of key.split("/")) {
+            if (value == undefined)
+                value = locale[part]
+            else
+                value = value[part]
+        }
 
-        return locale[key]
+        switch (type) {
+            case this.type.all:
+                return `<font color="#AAAAAA">Ξ [${locale["home"]}] ${value}</font>`
+            case this.type.self:
+                return `<J># <BL>${value}`
+        }
+
+        return value
     }
 }

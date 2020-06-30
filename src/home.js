@@ -11,12 +11,25 @@ export default class Home {
         })
     }
 
+    eventRegister() {
+        this.owner = ""
+        this.admins = []
+
+        let parts = nm.Room.Name.split("#homez0")
+        if (parts.length == 2) {
+            this.owner = parts[1]
+            this.admins.push(parts[1])
+        }
+    }
+
     call(key, args) {
         this.options.plugins.forEach((plugin) => {
             if (!plugin.enabled) return
             if (!plugin[key]) return
             plugin[key].apply(plugin, args)
         })
+        if (!this[key]) return
+        this[key].apply(this, args)
     }
 
     getScript() {
