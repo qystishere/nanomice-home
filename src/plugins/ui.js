@@ -2,7 +2,7 @@ import Plugin from "./plugin"
 import Locale from "../utils/locale"
 
 let defaultOptions = {
-    mapName: `<font color="#AAAAAA">${Locale.get("home")}</font>`,
+    mapName: "",
     shamanName: "",
     admins: []
 }
@@ -15,6 +15,8 @@ export default class UI extends Plugin {
     }
 
     eventRegister() {
+        this.options.mapName = `<font color="#AAAAAA">${Locale.get("home")} ${this.home.owner}</font>`
+
         nm.Room.GetPlayers().forEach((player) => {
             this.eventNewPlayer(player.Name)
         })

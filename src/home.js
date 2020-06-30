@@ -23,13 +23,14 @@ export default class Home {
     }
 
     call(key, args) {
+        if (this[key]) {
+            this[key].apply(this, args)
+        }
         this.options.plugins.forEach((plugin) => {
             if (!plugin.enabled) return
             if (!plugin[key]) return
             plugin[key].apply(plugin, args)
         })
-        if (!this[key]) return
-        this[key].apply(this, args)
     }
 
     getScript() {
