@@ -15,7 +15,7 @@ export default class Home {
         this.owner = ""
         this.admins = []
 
-        let parts = nm.Room.Name.split("#homez0")
+        let parts = nm.Room.Name.split("#home0")
         if (parts.length == 2) {
             this.owner = parts[1]
             this.admins.push(parts[1])
